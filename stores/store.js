@@ -19,7 +19,16 @@ class Store {
     searchFilm = async (title, year, type) => {
         const response = await fetch(`${API_BASE}&s=${title}&y=${year}&type=${type}`);
         const { Search } = await response.json();
-        this.films = Search
+        const filmsWithRatings = [];
+
+        for (let i = 0; i < Search.length; i++) {
+            const response = await fetch(`${API_BASE}&i=${Search[i].imdbID}`);
+            const filmDetail = await response.json();
+            const filteredFilm = Search.filter(film => film.imdbID === Search[i].imdbID);
+            filteredFilm[0].imdbRating = filmDetail.imdbRating;
+            filmsWithRatings.push(filteredFilm[0]);
+        }
+        this.films = filmsWithRatings;
     }
 }
 

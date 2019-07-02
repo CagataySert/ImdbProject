@@ -8,17 +8,14 @@ import FilmBox from '../components/FilmBox';
 @observer
 class Page extends React.Component {
 
-    handleAddFavorite = (event, filmId) => {
+    handleAddFavorite = (event, title, year, poster, filmId, imdbRating) => {
+        console.log(title, year, poster, filmId, imdbRating);
 
-        local_api.addFilmToFavorite(filmId)
+        local_api.addFilmToFavorite(title, year, poster, filmId, imdbRating)
             .then(() => console.log('eklendi'))
             .catch(error => alert('An Error Occured'));
 
         event.target.className = 'fas fa-star favorite-button';
-        //Favorilerden Çıkartılma özelliği eklendiğinde aktifleştirilebilir..
-        // event.target.className = event.target.className === 'far fa-star favorite-button'
-        //     ? 'fas fa-star favorite-button'
-        //     : 'far fa-star favorite-button';
     }
     render() {
         const films = this.props.store.films;
@@ -31,7 +28,15 @@ class Page extends React.Component {
                             <div className='row'>
                                 {
                                     films.map((film, index) => (
-                                        <FilmBox handleAddFavorite={this.handleAddFavorite} key={index} filmId={film.filmId} title={film.Title} year={film.Year} poster={film.Poster} />
+                                        <FilmBox
+                                            handleAddFavorite={this.handleAddFavorite}
+                                            key={index} filmId={film.imdbID}
+                                            title={film.Title}
+                                            year={film.Year}
+                                            poster={film.Poster}
+                                            isFavorited={false}
+                                            imdbRating={film.imdbRating}
+                                        />
                                     ))
                                 }
                             </div>

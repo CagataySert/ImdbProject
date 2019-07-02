@@ -212,6 +212,11 @@ function (_Component) {
       _this.props.store.searchFilm(title, year, type);
     };
 
+    _this.resetFilms = function () {
+      console.log('222');
+      _this.props.store.films = {};
+    };
+
     return _this;
   }
 
@@ -222,21 +227,21 @@ function (_Component) {
         className: "navbar navbar-expand-lg navbar-light bg-light",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 29
+          lineNumber: 35
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_7___default.a, {
         href: "/",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 30
+          lineNumber: 36
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("a", {
         className: "navbar-brand",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 31
+          lineNumber: 37
         },
         __self: this
       }, "Imdb Project")), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("button", {
@@ -249,14 +254,14 @@ function (_Component) {
         "aria-label": "Toggle navigation",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 33
+          lineNumber: 39
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("span", {
         className: "navbar-toggler-icon",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 34
+          lineNumber: 40
         },
         __self: this
       })), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", {
@@ -264,35 +269,36 @@ function (_Component) {
         id: "navbarSupportedContent",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 37
+          lineNumber: 43
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("ul", {
         className: "navbar-nav mr-auto",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 38
+          lineNumber: 44
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_7___default.a, {
         href: "/other",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 39
+          lineNumber: 45
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("a", {
+        onClick: this.resetFilms,
         className: "nav-item nav-link",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 40
+          lineNumber: 46
         },
         __self: this
       }, "My Favorites"))), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("form", {
         className: "form-inline my-2 my-lg-0",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 43
+          lineNumber: 49
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("input", {
@@ -304,7 +310,7 @@ function (_Component) {
         placeholder: "Title",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 44
+          lineNumber: 50
         },
         __self: this
       }), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("input", {
@@ -316,7 +322,7 @@ function (_Component) {
         placeholder: "Year",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 45
+          lineNumber: 51
         },
         __self: this
       }), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("select", {
@@ -325,25 +331,25 @@ function (_Component) {
         className: "form-control mr-sm-2",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 46
+          lineNumber: 52
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("option", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 47
+          lineNumber: 53
         },
         __self: this
       }, "Movie"), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("option", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 48
+          lineNumber: 54
         },
         __self: this
       }, "Series"), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("option", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 49
+          lineNumber: 55
         },
         __self: this
       }, "Episode")), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("button", {
@@ -352,7 +358,7 @@ function (_Component) {
         type: "button",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 51
+          lineNumber: 57
         },
         __self: this
       }, "Search"))));
@@ -377,7 +383,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "API_BASE", function() { return API_BASE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KEY", function() { return KEY; });
 var API_BASE = 'http://www.omdbapi.com?apikey=f976e35d';
-var KEY = 'project';
+var KEY = 'project5';
 
 /***/ }),
 
@@ -16601,28 +16607,76 @@ var Store = (_class = (_temp = function Store() {
         var _ref = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])(
         /*#__PURE__*/
         _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(title, year, type) {
-          var response, _ref2, Search;
+          var response, _ref2, Search, filmsWithRatings, _loop, i;
 
-          return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context2) {
             while (1) {
-              switch (_context.prev = _context.next) {
+              switch (_context2.prev = _context2.next) {
                 case 0:
-                  _context.next = 2;
+                  _context2.next = 2;
                   return isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_8___default()("".concat(_constants_constants_js__WEBPACK_IMPORTED_MODULE_9__["API_BASE"], "&s=").concat(title, "&y=").concat(year, "&type=").concat(type));
 
                 case 2:
-                  response = _context.sent;
-                  _context.next = 5;
+                  response = _context2.sent;
+                  _context2.next = 5;
                   return response.json();
 
                 case 5:
-                  _ref2 = _context.sent;
+                  _ref2 = _context2.sent;
                   Search = _ref2.Search;
-                  _this.films = Search;
+                  filmsWithRatings = [];
+                  _loop =
+                  /*#__PURE__*/
+                  _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _loop(i) {
+                    var response, filmDetail, filteredFilm;
+                    return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _loop$(_context) {
+                      while (1) {
+                        switch (_context.prev = _context.next) {
+                          case 0:
+                            _context.next = 2;
+                            return isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_8___default()("".concat(_constants_constants_js__WEBPACK_IMPORTED_MODULE_9__["API_BASE"], "&i=").concat(Search[i].imdbID));
 
-                case 8:
+                          case 2:
+                            response = _context.sent;
+                            _context.next = 5;
+                            return response.json();
+
+                          case 5:
+                            filmDetail = _context.sent;
+                            filteredFilm = Search.filter(function (film) {
+                              return film.imdbID === Search[i].imdbID;
+                            });
+                            filteredFilm[0].imdbRating = filmDetail.imdbRating;
+                            filmsWithRatings.push(filteredFilm[0]);
+
+                          case 9:
+                          case "end":
+                            return _context.stop();
+                        }
+                      }
+                    }, _loop);
+                  });
+                  i = 0;
+
+                case 10:
+                  if (!(i < Search.length)) {
+                    _context2.next = 15;
+                    break;
+                  }
+
+                  return _context2.delegateYield(_loop(i), "t0", 12);
+
+                case 12:
+                  i++;
+                  _context2.next = 10;
+                  break;
+
+                case 15:
+                  _this.films = filmsWithRatings;
+
+                case 16:
                 case "end":
-                  return _context.stop();
+                  return _context2.stop();
               }
             }
           }, _callee);

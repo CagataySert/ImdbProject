@@ -24,6 +24,12 @@ class Navbar extends Component {
         this.props.store.searchFilm(title, year, type);
     }
 
+    resetFilms = () => {
+        console.log('222');
+
+        this.props.store.films = {};
+    }
+
     render() {
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -37,7 +43,7 @@ class Navbar extends Component {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
                         <Link href='/other'>
-                            <a className='nav-item nav-link'>My Favorites</a>
+                            <a onClick={this.resetFilms} className='nav-item nav-link'>My Favorites</a>
                         </Link>
                     </ul>
                     <form className="form-inline my-2 my-lg-0">

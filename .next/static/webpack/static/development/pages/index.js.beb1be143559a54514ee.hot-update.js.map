@@ -1,1 +1,0 @@
-{"version":3,"file":"static/webpack/static\\development\\pages\\index.js.beb1be143559a54514ee.hot-update.js","sources":["webpack:///./constants/constants.js"],"sourcesContent":["\r\n\r\nexport const API_BASE = 'http://www.omdbapi.com?apikey=f976e35d';\r\n\r\nexport const KEY = 'project';"],"mappings":";;;;;;;;;;AAEA;AAAA;AAAA;AAAA;AAEA;;;;A","sourceRoot":""}

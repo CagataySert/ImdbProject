@@ -41,69 +41,82 @@ function (_Component) {
   Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(FilmBox, [{
     key: "render",
     value: function render() {
-      var _this = this;
-
+      var props = this.props;
       return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
         className: "col-md-4 image-box",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 7
+          lineNumber: 9
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
         className: "card bg-secondary text-white card-width",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 8
+          lineNumber: 10
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("img", {
         className: "card-img-top",
         width: "50px",
         height: "300px",
-        src: this.props.poster,
+        src: props.poster,
         alt: "Card image cap",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 9
+          lineNumber: 11
         },
         __self: this
       }), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
         className: "card-body",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 10
+          lineNumber: 12
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("h5", {
         className: "card-title",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 11
+          lineNumber: 13
         },
         __self: this
-      }, this.props.title), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", {
+      }, props.title), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", {
         className: "card-text",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 12
+          lineNumber: 14
         },
         __self: this
-      }, this.props.year), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("a", {
+      }, props.year), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", {
+        className: "card-text",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 15
+        },
+        __self: this
+      }, "IMDb : ", props.imdbRating), props.isFavorited ? react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("i", {
+        className: "fas fa-star favorite-button",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 18
+        },
+        __self: this
+      }) : react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("a", {
         href: "#",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 13
+          lineNumber: 20
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("i", {
         onClick: function onClick(event) {
-          return _this.props.handleAddFavorite(event, _this.props.filmId);
+          return props.handleAddFavorite(event, props.title, props.year, props.poster, props.filmId, props.imdbRating);
         },
         className: "far fa-star favorite-button",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 14
+          lineNumber: 21
         },
         __self: this
       })))));
@@ -129,7 +142,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "API_BASE", function() { return API_BASE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KEY", function() { return KEY; });
 var API_BASE = 'http://www.omdbapi.com?apikey=f976e35d';
-var KEY = 'project';
+var KEY = 'project5';
 
 /***/ }),
 
@@ -8356,16 +8369,14 @@ function (_React$Component) {
 
     _this = Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__["default"])(this, (_getPrototypeOf2 = Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__["default"])(Page)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _this.handleAddFavorite = function (event, filmId) {
-      _serverApi_LocalStorage__WEBPACK_IMPORTED_MODULE_8__["default"].addFilmToFavorite(filmId).then(function () {
+    _this.handleAddFavorite = function (event, title, year, poster, filmId, imdbRating) {
+      console.log(title, year, poster, filmId, imdbRating);
+      _serverApi_LocalStorage__WEBPACK_IMPORTED_MODULE_8__["default"].addFilmToFavorite(title, year, poster, filmId, imdbRating).then(function () {
         return console.log('eklendi');
       }).catch(function (error) {
         return alert('An Error Occured');
       });
-      event.target.className = 'fas fa-star favorite-button'; //Favorilerden Çıkartılma özelliği eklendiğinde aktifleştirilebilir..
-      // event.target.className = event.target.className === 'far fa-star favorite-button'
-      //     ? 'fas fa-star favorite-button'
-      //     : 'far fa-star favorite-button';
+      event.target.className = 'fas fa-star favorite-button';
     };
 
     return _this;
@@ -8381,40 +8392,42 @@ function (_React$Component) {
         className: "container",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 26
+          lineNumber: 23
         },
         __self: this
       }, this.props.store.films.length === undefined ? react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
         className: "searchSomethingDiv",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 29
+          lineNumber: 26
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("h2", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 29
+          lineNumber: 26
         },
         __self: this
       }, "Let's search something!")) : react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
         className: "row",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 31
+          lineNumber: 28
         },
         __self: this
       }, films.map(function (film, index) {
         return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_components_FilmBox__WEBPACK_IMPORTED_MODULE_9__["default"], {
           handleAddFavorite: _this2.handleAddFavorite,
           key: index,
-          filmId: film.filmId,
+          filmId: film.imdbID,
           title: film.Title,
           year: film.Year,
           poster: film.Poster,
+          isFavorited: false,
+          imdbRating: film.imdbRating,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 34
+            lineNumber: 31
           },
           __self: this
         });
@@ -8454,19 +8467,39 @@ __webpack_require__.r(__webpack_exports__);
 var LocalStorageApi = function LocalStorageApi() {
   Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_2__["default"])(this, LocalStorageApi);
 
-  this.addFilmToFavorite = function (filmId) {
+  this.addFilmToFavorite = function (title, year, poster, filmId, imdbRating) {
     return new _babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_1___default.a(function (resolve, reject) {
       var response = localStorage.getItem(_constants_constants_js__WEBPACK_IMPORTED_MODULE_4__["KEY"]);
 
       if (!!response) {
         var filmArray = JSON.parse(response);
-        filmArray.push(filmId);
+        filmArray.push({
+          title: title,
+          year: year,
+          poster: poster,
+          filmId: filmId,
+          imdbRating: imdbRating
+        });
         localStorage.setItem(_constants_constants_js__WEBPACK_IMPORTED_MODULE_4__["KEY"], _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(filmArray));
         resolve();
       } else {
-        localStorage.setItem(_constants_constants_js__WEBPACK_IMPORTED_MODULE_4__["KEY"], _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()([filmId]));
+        localStorage.setItem(_constants_constants_js__WEBPACK_IMPORTED_MODULE_4__["KEY"], _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()([{
+          title: title,
+          year: year,
+          poster: poster,
+          filmId: filmId,
+          imdbRating: imdbRating
+        }]));
         resolve();
       }
+    });
+  };
+
+  this.getFavorites = function () {
+    return new _babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_1___default.a(function (resolve, reject) {
+      var response = localStorage.getItem(_constants_constants_js__WEBPACK_IMPORTED_MODULE_4__["KEY"]);
+      var filmArray = JSON.parse(response);
+      !!response === true ? resolve(filmArray) : resolve(null);
     });
   };
 };
